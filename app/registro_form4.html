@@ -1,0 +1,117 @@
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/demo.css">
+	
+	 <link href="librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	
+	 <script type="text/javascript" src="librerias/jquery.min.js"></script>
+    <script type="text/javascript" src="librerias/jquery-easyui-1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="librerias/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+   
+<script>
+$(document).ready(function(){
+
+$('#guardar').click(function(){
+
+			var cadena = $("#registrar").serialize();		   
+			//console.log(dato);
+			  $.ajax({	
+			  type:	"POST",
+				//data:{datos:dato},			  
+				url: 'php/registro.php',
+				data:	cadena,
+				contentType: "application/x-www-form-urlencoded", 
+				dataType: "html",
+				success: function(result){
+					//alert(result);
+					$.messager.alert('Warning',result);
+					
+					/*$.messager.show({
+						title:'My Title',
+						msg:result,
+						timeout:5000,
+						showType:'slide'
+					});*/
+					
+				}
+
+
+})
+
+
+});
+});
+</script>
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="container">
+<div style="margin:20px 0;"></div>
+    <div class="easyui-panel" title="Registro" style="width:500px">
+        <div style="padding:10px 60px 20px 60px">
+        <form id="registrar">
+            <table width="378" cellpadding="5">
+                <tr>
+                  <td colspan="2">Inscribirse como</td>
+                </tr>
+                <tr>
+                  <td colspan="2"><input name="radio1" type="radio" value="individual" id="1">
+                  Individual 
+                    <input name="radio1" class="easyui-radiobutton" type="radio" value="organizacion" id="2">
+                  Organización/Colectivo</td>
+                </tr>
+                <tr>
+                    <td width="105">Nombre:</td>
+                    <td width="205"><input class="easyui-textbox"  id="nombre" type="text" name="nombre" data-options="required:true"></input></td>
+                </tr>
+                <tr>
+                    <td>Contrase&ntilde;a:</td>
+                    <td><input class="easyui-textbox" id="pwd" type="password"  name="pwd" data-options="required:true"></input></td>
+                </tr>
+                <tr>
+                  <td>Correo electronico : </td>
+                  <td><input class="easyui-textbox"  id="email" type="text" name="email" data-options="required:true"></td>
+                </tr>
+                <tr>
+                  <td colspan="2"> <input class="easyui-textbox" name="message" style="width:100%;height:60px" data-options="label:'Message:',multiline:true"></td>
+                </tr>
+                <tr>
+                  <td colspan="2"><input type="checkbox"  class="easyui-checkbox" name="checkbox" value="checkbox">
+                  Al registrarte aceptas los términos y condiciones de uso.</td>
+                </tr>
+                <tr>
+                  <td colspan="2"><input type="submit"  class="easyui-submit" name="Submit" value="Registrarse"></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+            </table>
+        </form>
+		  <div style="text-align:center;padding:5px">
+            <a href="javascript:void(0)" id="guardar" class="easyui-linkbutton" onClick="submitForm()">Guardar</a>
+           
+        </div>
+        </div>
+		    </div>
+		
+	
+</body>
+
+</html>
