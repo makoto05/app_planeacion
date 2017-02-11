@@ -23,14 +23,7 @@ class personas_model{
 		} else {
 			//print "Conexion exitosa<br>";	
 		}*/
-		$this->db=Conectar::conexion();
-		if($this->db){
-		echo(" ya todo bien ok");
-		$x=$_POST['nombre'];
-		echo $x;
-		}
-		else
-		echo(" Nou");
+		$this->db=Conectar::conexion();		
 		
     }
     public function get_personas(){
@@ -54,6 +47,8 @@ class personas_model{
 	 $query="insert into sesion ( username, password, perfil, email) values ('$_POST[nombre]','$_POST[pwd]','$_POST[radio1]','$_POST[email]')";
 	 //$query="insert into sesion ( username) values ('$_POST[nombre]')";
 	 $resultado = pg_query($this->db, $query);
+	 if($resultado)
+	 echo "Usuario Registrado!!!";
 	 }
 }
 ?>

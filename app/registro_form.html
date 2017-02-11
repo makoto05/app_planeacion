@@ -2,32 +2,47 @@
 
 <head>
 
-<link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/themes/default/easyui.css">
+
+	<link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/demo.css">
-	
 	 <link href="librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	
 	 <script type="text/javascript" src="librerias/jquery.min.js"></script>
     <script type="text/javascript" src="librerias/jquery-easyui-1.4.4/jquery.min.js"></script>
-    <script type="text/javascript" src="librerias/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="librerias/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+  <style>
+  .col-centrada{
+    float: none;
+    margin: 0 auto;
+}
+  </style> 
    
 <script>
 $(document).ready(function(){
 
 $('#guardar').click(function(){
+  
+  var nombre=document.getElementById("nombre").value;
+  var pwd=document.getElementById("pwd").value;
+  var email=document.getElementById("email").value;
+  var individual=document.getElementById("individual").checked;
+  var organizacion=document.getElementById("organizacion").checked;
+  
+	if(nombre=="" || pwd=="" || email=="" || (individual==false && organizacion==false))
+	alert("Todos los campos son obligatorios");
+	
+	else{
 
-	nombre = $( "#nombre" ).val();
-	cedula = $( "#cedula" ).val();	
-	/*pass = $( "#pass" ).val();	
-	estado = $( "#estado" ).val();	
-	fechaNacimiento = $( "#fechaNacimiento" ).val();*/			
-			
-    var dato = [{"nombre":nombre,"cedula":cedula/*,"pass":pass,"estado":estado,"fechaNacimiento":fechaNacimiento*/}]
-			console.log(dato);
+			var cadena = $("#registrar").serialize();		   
+			//console.log(dato);
 			  $.ajax({	
-				data:{datos:dato},			  
+			  type:	"POST",
+				//data:{datos:dato},			  
 				url: 'php/registro.php',
+				data:	cadena,
+				//contentType: "application/x-www-form-urlencoded", 
+				dataType: "html",
 				success: function(result){
 					//alert(result);
 					$.messager.alert('Warning',result);
@@ -44,6 +59,7 @@ $('#guardar').click(function(){
 
 })
 
+} // del else
 
 });
 });
@@ -58,62 +74,58 @@ $('#guardar').click(function(){
 
 <body>
 
-
-<div class="container">
-<div style="margin:20px 0;"></div>
-    <div class="easyui-panel" title="Registro" style="width:700px">
-        <div style="padding:10px 60px 20px 60px">
-        <form id="ff" method="post">
-            <table width="378" cellpadding="5">
-                <tr>
-                  <td colspan="2">Inscribirse como</td>
-                </tr>
-                <tr>
-                  <td colspan="2"><input name="radiobutton" type="radio" value="radiobutton">
+		<div class="container" style="border:#009933">
+		<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-8">
+  <h2>Registro de Usuario</h2>
+    <form id="registrar">
+  
+  	<div class="form-group">
+      <label>Inscribirse como</label><br>
+      <input name="radio1" type="radio" value="individual" id="individual" >
                   Individual 
-                    <input name="radiobutton" class="easyui-radiobutton" type="radio" value="radiobutton">
-                  Organización/Colectivo</td>
-                </tr>
-                <tr>
-                    <td width="105">Nombre:</td>
-                    <td width="205"><input class="easyui-textbox"  id="nombre" type="text" name="name" data-options="required:true"></input></td>
-                </tr>
-                <tr>
-                    <td>Contrase&ntilde;a:</td>
-                    <td><input class="easyui-textbox"  id="cedula" type="text" name="name" data-options="required:true"></input></td>
-                </tr>
-                <tr>
-                  <td>Correo electronico : </td>
-                  <td><input class="easyui-textbox"  id="name" type="text" name="name2" data-options="required:true"></td>
-                </tr>
-                <tr>
-                  <td colspan="2"> <input class="easyui-textbox" name="message" style="width:100%;height:60px" data-options="label:'Message:',multiline:true"></td>
-                </tr>
-                <tr>
-                  <td colspan="2"><input type="checkbox"  class="easyui-checkbox" name="checkbox" value="checkbox">
-                  Al registrarte aceptas los términos y condiciones de uso.</td>
-                </tr>
-                <tr>
-                  <td colspan="2"><input type="submit"  class="easyui-submit" name="Submit" value="Registrarse"></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td>&nbsp;</td>
-                </tr>
-            </table>
-        </form>
-		  <div style="text-align:center;padding:5px">
-            <a href="javascript:void(0)" id="guardar" class="easyui-linkbutton" onClick="submitForm()">Guardar</a>
-           
-        </div>
-        </div>
-		    </div>
-		
+      <input name="radio1" type="radio" value="organizacion" id="organizacion" >
+                  Organización/Colectivo
+    </div>
+  
+     <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" >
+    </div>
+   
+    <div class="form-group">
+      <label for="pwd">Contraseña:</label>
+      <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Ingrese su Contraseña" >
+    </div>
 	
+	  <div class="form-group">
+      <label for="email">Correo electronico:</label>
+      <input type="email" class="form-control" id="email"  name="email" placeholder="Ingrese su correo electronico" >
+    </div>
+	
+    <div class="form-group">      
+      <textarea name="textarea" class="form-control" id="condiciones" name="condiciones"></textarea>
+    </div>
+	
+    <div class="checkbox">
+      <label><input type="checkbox"> Al registrarte aceptas los términos y condiciones de uso.</label>
+    </div>
+  <!--  <button id="guardar" class="btn btn-success">Registrarse</button>-->
+	 
+  </form>
+   <a href="javascript:void(0)" id="guardar" class="btn btn-success" >Guardar</a>
+</div>
+
+</div>
+</div>
+ 
+<div class="row">
+  <div class="col-lg-6 col-centrada">
+    Contenido
+  </div>
+</div>
+
+
 </body>
 
 </html>
