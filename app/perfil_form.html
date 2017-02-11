@@ -1,0 +1,213 @@
+<html>
+
+<head>
+
+
+	<link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="librerias/jquery-easyui-1.4.4/demo.css">
+	 <link href="librerias/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	
+	 <script type="text/javascript" src="librerias/jquery.min.js"></script>
+    <script type="text/javascript" src="librerias/jquery-easyui-1.4.4/jquery.min.js"></script>
+	<script type="text/javascript" src="librerias/jquery-easyui-1.4.4/jquery.easyui.min.js"></script>
+  <style>
+  .col-centrada{
+    float: none;
+    margin: 0 auto;
+}
+  </style> 
+   
+<script>
+$(document).ready(function(){
+
+$('#guardar').click(function(){
+  
+  var nombre=document.getElementById("nombre").value;
+  var pwd=document.getElementById("pwd").value;
+  var email=document.getElementById("email").value;
+  var individual=document.getElementById("individual").checked;
+  var organizacion=document.getElementById("organizacion").checked;
+  
+	if(nombre=="" || pwd=="" || email=="" || (individual==false && organizacion==false))
+	alert("Todos los campos son obligatorios");
+	
+	else{
+
+			var cadena = $("#registrar").serialize();		   
+			//console.log(dato);
+			  $.ajax({	
+			  type:	"POST",
+				//data:{datos:dato},			  
+				url: 'php/registro.php',
+				data:	cadena,
+				//contentType: "application/x-www-form-urlencoded", 
+				dataType: "html",
+				success: function(result){
+					//alert(result);
+					$.messager.alert('Warning',result);
+					
+					/*$.messager.show({
+						title:'My Title',
+						msg:result,
+						timeout:5000,
+						showType:'slide'
+					});*/
+					
+				}
+
+
+})
+
+} // del else
+
+});
+});
+</script>
+
+
+
+
+</head>
+
+
+
+<body>
+
+		<div class="container">
+		<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-8">
+  <h2>Perfil de Usuario</h2>
+    <form id="perfil_natural">  
+  
+     <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" >
+    </div>
+   
+    <div class="form-group">
+      <label for="tipo">Tipo de Identificación:</label>
+      <select name="tipo" id="tipo">
+ 	 <option value="1">Cedula</option>
+  	<option value="2">Tarjeta Identidad</option>
+ 	 <option value="3">Registro Civil</option>
+	</select>
+    </div>
+	
+	<div class="form-group">
+      <label for="identificacion">Identificación:</label>
+      <input type="text" class="form-control" id="identificacion" name="identificacion" placeholder="Ingrese su identificación" >
+    </div>
+	
+	<div class="form-group">
+      <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+      <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Ingrese su fecha de nacimiento" >
+    </div>
+	
+	<div class="form-group">
+      <label for="genero">Genero:</label>
+      <input type="text" class="form-control" id="genero" name="genero" placeholder="Ingrese su genero" >
+    </div>
+    
+	<div class="form-group">
+      <label for="pais">Pais de Nacimiento:</label>
+      <input type="text" class="form-control" id="pais" name="pais" placeholder="Ingrese su pais" >
+    </div>
+	
+	
+	<div class="form-group">
+      <label for="departamento">Departamento:</label>
+      <input type="text" class="form-control" id="departamento" name="departamento" placeholder="Ingrese su departamento" >
+    </div>
+	
+	<div class="form-group">
+      <label for="ciudad">Ciudad:</label>
+      <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Ingrese su ciudad" >
+    </div>
+	
+	
+	<div class="form-group">
+      <label for="estado_civil">Estado civil:</label>
+      <input type="text" class="form-control" id="estado_civil" name="estado_civil" placeholder="Ingrese su estado civil" >
+    </div>
+	
+	
+	<div class="form-group">
+      <label for="barrio">Barrio:</label>
+      <input type="text" class="form-control" id="barrio" name="barrio" placeholder="Ingrese su barrio" >
+    </div>
+	
+	
+	<div class="form-group">
+      <label for="nomenclatura">Nomenclatura:</label>
+      <input type="text" class="form-control" id="nomenclatura" name="nomenclatura" placeholder="Ingrese su nomenclatura" >
+    </div>
+	
+	<div class="form-group">
+      <label for="referencia_catastral ">Referencia_catastral:</label>
+      <input type="text" class="form-control" id="referencia_catastral " name="referencia_catastral " placeholder="Ingrese su referencia catastral " >
+    </div>
+	
+	<div class="form-group">
+      <label for="lugar_actividades">Lugar de actividades:</label>
+      <input type="text" class="form-control" id="lugar_actividades" name="lugar_actividades" placeholder="Ingrese su lugar de actividades" >
+    </div>
+	
+	
+	<div class="form-group">
+      <label for="telefono1 ">Telefono1:</label>
+      <input type="text" class="form-control" id="telefono1" name="telefono1" placeholder="Ingrese su lugar de telefono" >
+    </div>
+	
+	
+	<div class="form-group">
+      <label for="telefono2 ">Telefono2:</label>
+      <input type="text" class="form-control" id="telefono2" name="telefono2" placeholder="Ingrese su lugar de telefono2" >
+    </div>
+	
+	
+	<div class="form-group">
+      <label for="celular ">Celular:</label>
+      <input type="text" class="form-control" id="celular" name="celular" placeholder="Ingrese su lugar de celular" >
+    </div>
+	
+	 <div class="form-group">
+      <label for="email">Correo electronico:</label>
+      <input type="email" class="form-control" id="email"  name="email" placeholder="Ingrese su correo electronico" >
+    </div>
+	
+	<!--<div class="form-group">     
+      <input type="text" class="form-control" id="fecha_actual"  name="fecha_actual" >
+    </div>-->
+	
+	<div class="form-group">
+      <label for="nit ">Celular:</label>
+      <input type="text" class="form-control" id="celular" name="celular" placeholder="Ingrese su nit" >
+    </div>
+	
+	
+		<div class="form-group">
+      <label>Opera en Cartagena</label><br>
+      <input name="radio1" type="radio" value="1" id="si" >
+                  Si 
+      <input name="radio1" type="radio" value="0" id="no" >
+                  No
+    </div>
+	
+   <div class="form-group">
+      <label for="duracion ">Tiempo duración:</label>
+      <input type="text" class="form-control" id="duracion" name="duracion" placeholder="Ingrese su tiempo duración de operar en Cartagena" >
+    </div>
+  <!--  <button id="guardar" class="btn btn-success">Registrarse</button>-->
+	 
+  </form>
+   <a href="javascript:void(0)" id="guardar" class="btn btn-success" >Guardar</a>
+</div>
+
+</div>
+</div>
+
+ 
+</body>
+
+</html>

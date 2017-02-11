@@ -77,39 +77,22 @@ $('#guardar').click(function(){
 		<div class="container">
 		<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-8">
-  <h2>Registro de Usuario</h2>
-    <form id="registrar">
+  <h2>Registro de Propuesta</h2>
+    <form id="registrar_propuesta">
   
   	<div class="form-group">
-      <label>Inscribirse como</label><br>
-      <input name="radio1" type="radio" value="individual" id="individual" >
-                  Individual 
-      <input name="radio1" type="radio" value="organizacion" id="organizacion" >
-                  Organización/Colectivo
-    </div>
-  
+     
      <div class="form-group">
-      <label for="nombre">Nombre:</label>
-      <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" >
+     <!-- <label for="titulo">Titulo Propuesta:</label>-->
+      <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Ingrese titulo de su propuesta" >
     </div>
+   		
+    <div class="form-group"> 
+	<!-- <label for="titulo">Titulo Propuesta:</label>   -->  
+      <textarea name="textarea" class="form-control" id="propuesta" name="propuesta" placeholder="Ingrese su propuesta"></textarea>
+    </div>
+	
    
-    <div class="form-group">
-      <label for="pwd">Contraseña:</label>
-      <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Ingrese su Contraseña" >
-    </div>
-	
-	  <div class="form-group">
-      <label for="email">Correo electronico:</label>
-      <input type="email" class="form-control" id="email"  name="email" placeholder="Ingrese su correo electronico" >
-    </div>
-	
-    <div class="form-group">      
-      <textarea name="textarea" class="form-control" id="condiciones" name="condiciones"></textarea>
-    </div>
-	
-    <div class="checkbox">
-      <label><input type="checkbox"> Al registrarte aceptas los términos y condiciones de uso.</label>
-    </div>
   <!--  <button id="guardar" class="btn btn-success">Registrarse</button>-->
 	 
   </form>
